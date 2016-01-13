@@ -1,0 +1,38 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
+
+l = List.new name:"list1"
+l.list_status= ListStatus.new hidden:true
+t = Task.new name:"task1", description:"Task 1 desc"
+t.task_status = TaskStatus.new hidden:true
+lt = ListTask.new 
+lt.list = l
+lt.task = t
+l.list_tasks<<lt
+

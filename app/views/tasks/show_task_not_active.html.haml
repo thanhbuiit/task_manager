@@ -1,0 +1,18 @@
+.col-sm-6.col-sm-offset-3
+  .panel.panel-primary
+    .panel-heading
+      .row
+        .col-xs-7.col-sm-10.col-md-7
+          %h3.panel-title Task hidden
+    .panel-body
+      %table#tbList.table.table-hover
+        %thead
+          %tr
+            %th ID Task
+            %th Task Name
+            %th Des
+            %th List parent
+            %th Action
+        %tbody
+          - @tasks.each do |task|
+            = render partial: "task_row", locals:{task: task}

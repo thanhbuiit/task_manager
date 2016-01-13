@@ -1,0 +1,20 @@
+.form-group
+  %label.col-sm-2.control-label Name
+  .col-sm-10
+    = task.text_field :name , class: "form-control"
+.form-group
+  %label.col-sm-2.control-label Description
+  .col-sm-10
+    = task.text_area :description , class: "form-control"
+.form-group
+  %label.col-sm-2.control-label Hidden
+  .col-sm-10
+    = task.check_box :hidden , {class: "form-control" }, "1", "0"
+= task.fields_for :logs do |l|
+  .panel.panel-primary
+    .panel-heading
+      .row
+        .col-xs-7.col-sm-10.col-md-7
+          %h3.panel-title Log
+    .panel-body
+      = render 'form_log', log:l

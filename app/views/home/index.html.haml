@@ -1,0 +1,33 @@
+- @lists.each do |list|
+  #l1.col-md-6.list
+    .panel.panel-primary
+      .panel-heading
+        .row
+          .col-xs-7.col-sm-10.col-md-7
+            %h3.panel-title
+              \##{list.id} - #{list.name}
+          .col-xs-5.col-sm-2.col-md-5
+            .btn-group.btn-group-xs.pull-right.button{"aria-label" => "Extra-small button group", :role => "group"}
+              = link_to new_list_task_path(list), {class: "btn btn-primary btn-xs", "data-toggle": "tooltip" , title: "Add tasks!"} do
+                %span.glyphicon.glyphicon-plus
+              = link_to edit_list_path(list), class: "btn btn-primary btn-xs" do
+                %span.glyphicon.glyphicon-pencil
+              = link_to list, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+                %span.glyphicon.glyphicon-remove-circle
+      .panel-body
+        .list-group
+          - list.tasks.each do |task|
+            %a.list-group-item{:href => "#"}
+              .row
+                .col-xs-3.col-sm-2.col-md-3 Task ID:
+                .col-xs-9.col-sm-10.col-md-9
+                  %b= task.id
+              .row
+                .col-xs-3.col-sm-2.col-md-3 Task name:
+                .col-xs-9.col-sm-10.col-md-9
+                  %b= task.name
+              .row
+                .col-xs-3.col-sm-2.col-md-3 Task Des:
+                .col-xs-9.col-sm-10.col-md-9
+                  %b= task.description
+= t '.title'

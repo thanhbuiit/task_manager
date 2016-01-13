@@ -1,0 +1,37 @@
+- if @task.nil?
+  %h2 Task not found
+- else
+  = form_for([@list, @task], :html => { class: "form-horizontal"} ) do |f|
+    - if @task.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@task.errors.count, "error")
+          prohibited this task from being saved:
+        %ul
+          - @task.errors.full_messages.each do |message|
+            %li= message
+    .col-sm-6.col-sm-offset-3
+      .panel.panel-primary
+        .panel-heading
+          .row
+            .col-xs-7.col-sm-10.col-md-7
+              %h3.panel-title Taks
+        .panel-body
+          .form-group
+            %label.col-sm-2.control-label{:for => "txtNameList"} List
+            .col-sm-10
+              = collection_select(:task, :list_id, @lists, :id, :format_name_list ,  {:prompt=>true}, {:class=>"form-control"})
+          .form-group
+            %label.col-sm-2.control-label{:for => "txtNameList"} Name
+            .col-sm-10
+              = f.text_field :name , class: "form-control"
+          .form-group
+            %label.col-sm-2.control-label{:for => "txtNameList"} Description
+            .col-sm-10
+              = f.text_area :description , class: "form-control"
+          .form-group
+            %label.col-sm-2.control-label{:for => "txtNameList"} Hidden
+            .col-sm-10
+              = f.check_box :hidden , {class: "form-control" }, "1", "0"
+        .panel-footer
+          = f.submit class: "btn btn-primary"

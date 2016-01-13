@@ -1,0 +1,28 @@
+class Task < ActiveRecord::Base
+	#has_one :list_task, autosave: true
+	belongs_to :list, class_name: "Project" #, primary_key: "id"
+	has_many :logs, as: :log
+	#def self.gethidden
+	#	where(hidden: true)
+	#end
+	has_many :tasks, foreign_key: 'id_parent'#, class_name: 'Manager', foreign_key: 'id'
+	scope :gethidden,-> {where(hidden: true)}
+	scope :getTaskOrder,->{order(name: :desc)}
+	scope :getTask,->(id){where("id < #{id}")}
+	#validates :name, :presence => true, :message => "asss"
+	#validates :name, :uniqueness => {:case_sensitive => false}
+	#validates_with TaskNameValidate, fields: [:name, :description]
+	#validate do |task| 
+	#	TaskNameValidate.new(task).validate
+	
+	#end
+	#validates_each :name, :description do |record, attr, value|
+  # record.errors.add(attr, 'must start with upper case') if value =~ /\A[[:lower:]]/
+  #end
+
+  validates :description, presence: true, if: :validate_name?
+
+  def  validate_name?
+  	name.nil?
+  end
+end  

@@ -1,0 +1,24 @@
+.col-sm-6.col-sm-offset-3
+  .panel.panel-primary
+    .panel-heading
+      .row
+        .col-xs-7.col-sm-10.col-md-7
+          %h3.panel-title List hidden
+    .panel-body
+      %table#tbList.table.table-hover
+        %thead
+          %tr
+            %th List id
+            %th List name
+            %th Action
+        %tbody
+          - @lists.each do |list|
+            %tr
+              %td= list.id
+              %td= list.name
+              %td
+                .btn-group.btn-group-xs.pull-right.button.Lists{"aria-label" => "Extra-small button group", :role => "group"}
+                  = link_to edit_list_path(list), class: "btn btn-primary btn-xs" do
+                    %span.glyphicon.glyphicon-pencil
+                  = link_to list, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+                    %span.glyphicon.glyphicon-remove-circle

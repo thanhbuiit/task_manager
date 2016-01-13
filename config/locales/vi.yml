@@ -1,0 +1,22 @@
+vi:
+  hello: "Xin chao!!"
+  add-list: "Them danh sach"
+  time:
+    formats:
+      short: "Ngay %d thang %m nam %Y"
+  activerecord:
+   errors:
+    template:
+     header:
+      other: "%{count} loi duoc phat hien."
+    models:
+     list:
+      attributes:
+       name:
+        blank: "khong duoc de trong"
+        too_short: "ten khong duoc nho hon %{count} ky tu"
+  mess: "Thong bao"
+  notification: "1 Thong Bao"
+  lists:
+    new:
+      title: "Trang chu"
